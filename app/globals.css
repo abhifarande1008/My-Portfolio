@@ -1,0 +1,59 @@
+@import "tailwindcss";
+
+:root {
+  --void: oklch(0.12 0.02 260);
+  --surface: oklch(0.18 0.015 260);
+  --text-primary: oklch(0.95 0.01 80);
+  --text-secondary: oklch(0.65 0.01 260);
+  --accent: oklch(0.72 0.18 180);
+  --warm: oklch(0.75 0.14 60);
+  --text-hero: clamp(3rem, 7vw, 6rem);
+  --text-h2: clamp(1.75rem, 3.5vw, 3rem);
+  --text-body: clamp(1rem, 1.1vw, 1.125rem);
+  --text-mono: clamp(0.75rem, 0.9vw, 0.875rem);
+}
+
+@theme inline {
+  --color-void: var(--void);
+  --color-surface: var(--surface);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-accent: var(--accent);
+  --color-warm: var(--warm);
+  --font-sans: var(--font-body);
+  --font-serif: var(--font-display);
+  --font-mono: var(--font-code);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--void);
+  color: var(--text-primary);
+  font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+  font-size: var(--text-body);
+}
+
+@media (pointer: fine) {
+  html.has-custom-cursor,
+  html.has-custom-cursor body,
+  html.has-custom-cursor a,
+  html.has-custom-cursor button {
+    cursor: none;
+  }
+}
+
+::selection {
+  background: color-mix(in oklch, var(--accent) 40%, transparent);
+  color: var(--text-primary);
+}
+
+.section-shell {
+  position: relative;
+  z-index: 10;
+  min-height: 100svh;
+  padding-inline: clamp(1.25rem, 5vw, 4.5rem);
+  padding-block: clamp(5rem, 12vh, 8rem);
+}
