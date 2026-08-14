@@ -1,45 +1,40 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { AdaptiveDpr } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
-import { HeroObject } from "./HeroObject";
+import { useMemo } from "react";
+import * as THREE from "three";
+import { Scene } from "./Scene";
 
-function useMobileTier() {
-  const [mobile, setMobile] = useState(true);
-
-  useEffect(() => {
-    const narrow = window.matchMedia("(max-width: 768px)");
-    const coarse = window.matchMedia("(pointer: coarse)");
-    const lowHw = (navigator.hardwareConcurrency || 8) <= 4;
-
-    const compute = () => setMobile(narrow.matches || coarse.matches || lowHw);
-    compute();
-    narrow.addEventListener("change", compute);
-    coarse.addEventListener("change", compute);
-    return () => {
-      narrow.removeEventListener("change", compute);
-      coarse.removeEventListener("change", compute);
-    };
-  }, []);
-
-  return mobile;
+function readMobileTier() {
+  if (typeof window === "undefined") return false;
+  return window.matchMedia("(max-width: 768px)").matches || window.matchMedia("(pointer: coarse)").matches;
 }
 
 export function HeroCanvas() {
-  const mobile = useMobileTier();
+  const mobile = useMemo(() => readMobileTier(), []);
 
   return (
     <Canvas
-      dpr={mobile ? [1, 1.5] : [1, 2]}
-      gl={{ antialias: !mobile, alpha: true, powerPreference: "high-performance" }}
-      frameloop="always"
-      camera={{ position: [0, 0, 6], fov: 45 }}
+      dpr={mobile ? [1, 1.25] : [1, 1.5]}
+      gl={{
+        antialias: !mobile,
+        alpha: true,
+        powerPreference: "high-performance",
+        toneMapping: THREE.ACESFilmicToneMapping,
+        toneMappingExposure: 1.08,
+        outputColorSpace: THREE.SRGBColorSpace,
+      }}
+      frameloop="demand"
+      camera={{ position: [-0.85, 0.18, 5.6], fov: 36, near: 0.12, far: 48 }}
       style={{ width: "100%", height: "100%" }}
+      onCreated={(state) => {
+        state.gl.setClearColor(0x000000, 0);
+        state.invalidate();
+      }}
     >
-      <ambientLight intensity={0.35} />
-      <directionalLight position={[4, 6, 8]} intensity={1.1} />
-      <pointLight position={[-6, -2, 4]} intensity={0.6} color="#3ecfc0" />
-      <HeroObject />
+      <Scene mobile={mobile} />
+      <AdaptiveDpr pixelated={false} />
     </Canvas>
   );
 }

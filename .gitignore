@@ -33,6 +33,10 @@ yarn-error.log*
 .env*
 !.env.example
 
+# agent scaffolding (recreated by next dev)
+AGENTS.md
+CLAUDE.md
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

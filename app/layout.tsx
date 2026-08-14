@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Instrument_Sans, Instrument_Serif, JetBrains_Mono } from "next/font/google";
+import { ExtensionErrorGuard } from "@/components/shared/ExtensionErrorGuard";
 import "./globals.css";
 
 const instrumentSans = Instrument_Sans({
@@ -22,9 +24,9 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Abhishek Farande — React & Next.js Developer",
+  title: "Abhishek Farande — Software Developer",
   description:
-    "Passionate developer crafting modern web experiences. Final-year IT student at Walchand Institute of Technology, intern at Akron Systems.",
+    "Software Developer at Seratek Systems building multi-tenant College ERP modules with Next.js, NestJS, and MongoDB.",
 };
 
 export default function RootLayout({
@@ -36,8 +38,15 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${instrumentSans.variable} ${instrumentSerif.variable} ${jetbrainsMono.variable} has-custom-cursor`}
+      suppressHydrationWarning
     >
-      <body className="antialiased">{children}</body>
+      <body className="antialiased" suppressHydrationWarning>
+        <Script id="theme-init" strategy="beforeInteractive">
+          {`try{if(localStorage.getItem("theme")==="light")document.documentElement.setAttribute("data-theme","light")}catch(e){}`}
+        </Script>
+        <ExtensionErrorGuard />
+        {children}
+      </body>
     </html>
   );
 }

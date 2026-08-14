@@ -28,7 +28,7 @@ export function MagneticButton({
 
   const onMove = (event: MouseEvent) => {
     const node = ref.current;
-    if (!node) return;
+    if (!node || window.matchMedia("(pointer: coarse)").matches) return;
     const rect = node.getBoundingClientRect();
     const cx = rect.left + rect.width / 2;
     const cy = rect.top + rect.height / 2;
@@ -51,7 +51,7 @@ export function MagneticButton({
     onMouseMove: onMove,
     onMouseLeave: reset,
     style: { x: springX, y: springY },
-    className,
+    className: `inline-flex items-center justify-center ${className}`,
     "data-cursor": "interactive",
   };
 

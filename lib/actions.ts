@@ -18,8 +18,5 @@ export async function submitContact(
     return { ok: false, error: "Please enter a valid email address." };
   }
 
-  // No mail provider configured yet — validated payload is accepted.
-  console.info("[contact]", { name, email, message });
-
   return { ok: true, error: "" };
 }

@@ -1,11 +1,11 @@
 "use client";
 
-import { useState } from "react";
 import { skills, skillTabs } from "@/lib/skillsData";
 import { SkillBar } from "./SkillBar";
+import { useSkillTab } from "@/lib/skill-tab-context";
 
 export function SkillTabs() {
-  const [active, setActive] = useState<(typeof skillTabs)[number]["id"]>("language");
+  const { tab: active, setTab } = useSkillTab();
   const visible = skills.filter((skill) => skill.category === active);
 
   return (
@@ -16,11 +16,11 @@ export function SkillTabs() {
             key={tab.id}
             type="button"
             data-cursor="interactive"
-            onClick={() => setActive(tab.id)}
-            className={`rounded-full px-4 py-2 font-mono text-[length:var(--text-mono)] transition-colors ${
+            onClick={() => setTab(tab.id)}
+            className={`rounded-full px-3 py-1.5 font-mono text-[length:var(--text-mono)] transition-colors sm:px-4 sm:py-2 ${
               active === tab.id
                 ? "bg-accent text-void"
-                : "border border-white/10 text-text-secondary hover:text-text-primary"
+                : "border border-white/10 text-text-secondary hover:border-white/25 hover:text-text-primary"
             }`}
           >
             {tab.label}

@@ -3,29 +3,20 @@ import type { ExperienceEntry } from "./types";
 export const experience: ExperienceEntry[] = [
   {
     type: "experience",
+    title: "Software Developer",
+    org: "Seratek Systems (formerly Akron Systems)",
+    period: "Jan 2026 – Present",
+    description:
+      "Building and maintaining Academics and Scholarship modules of a multi-tenant College ERP — student records, course management, scholarship allocation, admin masters, and the online Admission Form. Optimized NestJS REST APIs on MongoDB (25% lower latency) and ran Agile sprints with Azure Boards.",
+    tags: ["Next.js", "NestJS", "MongoDB", "ShadCN", "Tailwind CSS", "Azure Boards"],
+  },
+  {
+    type: "experience",
     title: "Software Developer Intern",
-    org: "Akron Systems",
-    period: "June 2025 – Present",
+    org: "Seratek Systems (formerly Akron Systems)",
+    period: "June 2025 – Dec 2025",
     description:
-      "On-site internship building a multi-tenant College ERP: role-based dashboards, dynamic forms, NestJS APIs, and MongoDB — working in a 5-member Agile team.",
-    tags: ["Next.js", "NestJS", "TypeScript", "MongoDB", "Agile"],
-  },
-  {
-    type: "training",
-    title: "Full Stack Web Development Trainee",
-    org: "Gradious Technologies Pvt. Ltd.",
-    period: "Mar – Sep 2024",
-    description:
-      "Full-stack training covering HTML, CSS, JavaScript, TypeScript, React, Node.js, MySQL, and MongoDB with hands-on project work.",
-    tags: ["HTML", "CSS", "JavaScript", "TypeScript", "React", "Node.js", "MySQL", "MongoDB"],
-  },
-  {
-    type: "certification",
-    title: "Android Development Internship",
-    org: "UEF EdTech Pvt. Ltd.",
-    period: "Jul – Aug 2022",
-    description:
-      "Built Android applications using Kotlin and Android Studio, covering UI, local data, and app lifecycle fundamentals.",
-    tags: ["Kotlin", "Android Studio"],
+      "Built responsive multi-role UI pages with ShadCN and Tailwind CSS, shipping dynamic forms and full CRUD workflows. Built and tested NestJS REST APIs with MongoDB for student, course, and scholarship modules, including backend validation.",
+    tags: ["Next.js", "NestJS", "TypeScript", "MongoDB", "ShadCN"],
   },
 ];
