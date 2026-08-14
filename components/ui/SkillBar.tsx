@@ -18,7 +18,7 @@ export function SkillBar({ skill, index }: { skill: Skill; index: number }) {
       </div>
       <div className="h-1.5 overflow-hidden rounded-full bg-white/8">
         <motion.div
-          className="h-full rounded-full bg-accent shadow-[0_0_12px_oklch(0.72_0.18_180/0.45)]"
+          className="h-full rounded-full bg-accent shadow-[0_0_12px_color-mix(in_oklch,var(--accent)_35%,transparent)]"
           initial={{ width: 0 }}
           whileInView={{ width: `${skill.level}%` }}
           viewport={{ once: true }}
