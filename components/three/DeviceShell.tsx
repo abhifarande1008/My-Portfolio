@@ -9,7 +9,7 @@ import { useTheme } from "@/lib/theme-context";
 import { prefersReducedMotion, frameDt } from "@/lib/frame";
 
 const KEY = "#7ee8dc";
-const STR = "#e8b84a";
+const STR = "#e6e0d4";
 const MUTED = "#6d7c86";
 const PLAIN = "#d7e2e8";
 const PINK = "#d4a4ff";

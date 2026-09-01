@@ -10,7 +10,7 @@ import { frameDt } from "@/lib/frame";
 
 const ACCENT = new THREE.Color(ACCENT_HEX);
 const WARM = new THREE.Color(WARM_HEX);
-const KEY_LIGHT = new THREE.Color("#fff6ea");
+const KEY_LIGHT = new THREE.Color("#e6e0d4");
 const FOG_COOL = new THREE.Color("#12141c");
 const FOG_WARM = new THREE.Color("#241c12");
 const FOG_COOL_LIGHT = new THREE.Color("#e4dfd4");
@@ -57,8 +57,8 @@ export function Lights() {
 
   return (
     <>
-      <hemisphereLight args={isLight ? ["#f7f3ea", "#c5d0d8", 0.62] : ["#b7d4e8", "#07080d", 0.22]} />
-      <directionalLight ref={keyRef} intensity={isLight ? 1.35 : 1.5} color={isLight ? "#fff6ea" : ACCENT_HEX} />
+      <hemisphereLight args={isLight ? ["#f7f3ea", "#c5d0d8", 0.62] : ["#b7d4e8", "#0f1016", 0.22]} />
+      <directionalLight ref={keyRef} intensity={isLight ? 1.35 : 1.5} color={isLight ? "#e6e0d4" : ACCENT_HEX} />
       <directionalLight ref={fillRef} intensity={isLight ? 0.5 : 0.28} color={isLight ? "#eef4ff" : "#9bb8c8"} />
       <directionalLight ref={rimRef} intensity={isLight ? 0.5 : 0.85} color={ACCENT_HEX} />
     </>

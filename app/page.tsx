@@ -4,6 +4,7 @@ import { ThemeProvider } from "@/lib/theme-context";
 import HeroCanvasWrapper from "@/components/three/HeroCanvasWrapper";
 import { Atmosphere } from "@/components/shared/Atmosphere";
 import { CustomCursor } from "@/components/ui/CustomCursor";
+import { PerformanceNotice } from "@/components/ui/PerformanceNotice";
 import { Navbar } from "@/components/ui/Navbar";
 import { Hero } from "@/components/sections/Hero";
 import { About } from "@/components/sections/About";
@@ -23,6 +24,7 @@ export default function HomePage() {
           <Preloader />
           <ClientOnly>
             <CustomCursor />
+            <PerformanceNotice />
           </ClientOnly>
           <a
             href="#hero"

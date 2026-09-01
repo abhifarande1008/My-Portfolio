@@ -1,5 +1,5 @@
 export const ACCENT_HEX = "#3ecfc0";
-export const WARM_HEX = "#e8b84a";
+export const WARM_HEX = "#e6e0d4";
 export const CHASSIS_DARK = "#14181f";
 export const CHASSIS_LIGHT = "#d8d2c8";
 

@@ -14,7 +14,7 @@ const LAYERS = [
   { id: "language", label: "FRONTEND", y: 0.78, color: "#3ecfc0" },
   { id: "framework", label: "FRAMEWORKS", y: 0.26, color: "#6ad7c4" },
   { id: "tool", label: "TOOLS", y: -0.26, color: "#9fd4a4" },
-  { id: "concept", label: "SYSTEMS", y: -0.78, color: "#e8b84a" },
+  { id: "concept", label: "SYSTEMS", y: -0.78, color: "#e6e0d4" },
 ] as const;
 
 function plateTexture(label: string, hex: string) {

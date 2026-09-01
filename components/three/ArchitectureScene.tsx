@@ -105,13 +105,13 @@ export function ArchitectureScene() {
   });
 
   return (
-    <group>
-      <instancedMesh ref={meshRef} args={[undefined, undefined, architectureNodes.length]} frustumCulled>
+    <group renderOrder={-1}>
+      <instancedMesh ref={meshRef} args={[undefined, undefined, architectureNodes.length]} frustumCulled renderOrder={-1}>
         <icosahedronGeometry args={[1, 0]} />
-        <meshStandardMaterial roughness={0.28} metalness={0.55} emissive={ACCENT_HEX} emissiveIntensity={0.2} />
+        <meshStandardMaterial roughness={0.28} metalness={0.55} emissive={ACCENT_HEX} emissiveIntensity={0.2} depthWrite={false} />
       </instancedMesh>
-      <lineSegments ref={linesRef} geometry={lineGeometry} frustumCulled>
-        <lineBasicMaterial vertexColors transparent opacity={0.55} />
+      <lineSegments ref={linesRef} geometry={lineGeometry} frustumCulled renderOrder={-1}>
+        <lineBasicMaterial vertexColors transparent opacity={0.55} depthWrite={false} />
       </lineSegments>
     </group>
   );

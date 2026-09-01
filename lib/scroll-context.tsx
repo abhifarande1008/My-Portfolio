@@ -6,6 +6,7 @@ import Lenis from "lenis";
 import { invalidate } from "@react-three/fiber";
 import "lenis/dist/lenis.css";
 import { eventElement } from "@/lib/dom";
+import { detectPerformanceTier } from "@/hooks/usePerformanceTier";
 
 const ScrollProgressContext = createContext<MotionValue<number> | null>(null);
 
@@ -19,9 +20,11 @@ export function ScrollProgressProvider({ children }: { children: ReactNode }) {
 
     const reduceQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
     const reduce = reduceQuery.matches;
+    const tier = detectPerformanceTier();
+
     const lenis = new Lenis({
       autoRaf: true,
-      lerp: reduce ? 1 : 0.075,
+      lerp: reduce ? 1 : tier === "low" ? 0.15 : 0.075,
       smoothWheel: !reduce,
       syncTouch: false,
     });

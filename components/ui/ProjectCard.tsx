@@ -29,8 +29,8 @@ function ProjectCover({ id }: { id: string }) {
 
   if (id === "diploma-aspirants") {
     return (
-      <div className="relative flex h-full items-center justify-center overflow-hidden bg-[#0d1612]">
-        <div className="h-[78%] w-[42%] rounded-[1.75rem] border border-accent/35 bg-[#101a14] p-3 shadow-[0_20px_60px_rgba(0,0,0,0.45)]">
+      <div className="relative flex h-full items-center justify-center overflow-hidden bg-void">
+        <div className="h-[78%] w-[42%] rounded-[1.75rem] border border-accent/35 bg-surface p-3 shadow-[0_20px_60px_rgba(0,0,0,0.45)]">
           <div className="mx-auto mb-3 h-1.5 w-12 rounded-full bg-white/15" />
           <div className="space-y-2">
             <div className="h-8 rounded-md bg-accent/20" />
