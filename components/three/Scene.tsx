@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useMemo } from "react";
-import dynamic from "next/dynamic";
 import { useThree, invalidate } from "@react-three/fiber";
 import { CameraRig } from "./CameraRig";
 import { Lights } from "./Lights";
@@ -9,12 +8,12 @@ import { EnvironmentRig } from "./EnvironmentRig";
 import { Particles } from "./Particles";
 import { DeviceShell } from "./DeviceShell";
 import { ArchitectureScene } from "./ArchitectureScene";
+import { IdentityHud } from "./IdentityHud";
+import { CraftLayers } from "./CraftLayers";
+import { WorkIcons } from "./WorkIcons";
+import { SignalMotif } from "./SignalMotif";
+import { SceneWarmup } from "./SceneWarmup";
 import type { PerformanceTier } from "@/hooks/usePerformanceTier";
-
-const IdentityHud = dynamic(() => import("./IdentityHud").then((mod) => mod.IdentityHud), { ssr: false });
-const CraftLayers = dynamic(() => import("./CraftLayers").then((mod) => mod.CraftLayers), { ssr: false });
-const WorkIcons = dynamic(() => import("./WorkIcons").then((mod) => mod.WorkIcons), { ssr: false });
-const SignalMotif = dynamic(() => import("./SignalMotif").then((mod) => mod.SignalMotif), { ssr: false });
 
 function WebGLGuard() {
   const gl = useThree((state) => state.gl);
@@ -44,6 +43,7 @@ export function Scene({ tier }: { tier: PerformanceTier }) {
 
   return (
     <>
+      <SceneWarmup />
       <fog attach="fog" args={["#1a1b20", 12, 42]} />
       <WebGLGuard />
       <CameraRig />

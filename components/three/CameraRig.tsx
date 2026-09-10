@@ -40,7 +40,10 @@ function sampleStops(stops: Stop[], t: number, outPos: THREE.Vector3, outLook: T
   const a = stops[i];
   const b = stops[i + 1];
   const span = b.t - a.t;
-  const u = span === 0 ? 1 : THREE.MathUtils.smoothstep(a.t, b.t, x);
+  // Use linear interpolation instead of smoothstep to avoid dead stops at section boundaries.
+  // This ensures the camera moves continuously and strictly proportionally to scroll.
+  const u = span === 0 ? 1 : (x - a.t) / span;
+  
   outPos.set(
     THREE.MathUtils.lerp(a.pos[0], b.pos[0], u),
     THREE.MathUtils.lerp(a.pos[1], b.pos[1], u),
@@ -66,8 +69,8 @@ export function CameraRig() {
   useFrame((state, delta) => {
     const t = scroll.get();
     const fov = sampleStops(reduced.current ? REDUCED_STOPS : STOPS, t, sampledPos, sampledLook);
-    const nearBeat = [0, 0.13, 0.22, 0.4, 0.58, 0.82].some((key) => Math.abs(t - key) < 0.028);
-    const lambda = reduced.current ? 12 : nearBeat ? 1.7 : 3.4;
+    // Constant damping factor so movement is fluid and doesn't stick to sections
+    const lambda = reduced.current ? 12 : 3.4;
 
     const camera = state.camera;
     camera.position.x = THREE.MathUtils.damp(camera.position.x, sampledPos.x, lambda, delta);

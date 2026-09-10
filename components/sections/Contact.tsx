@@ -34,7 +34,7 @@ function ContactForm() {
         <span className="font-mono text-[length:var(--text-mono)] text-text-secondary">Message</span>
         <textarea name="message" required minLength={10} maxLength={5000} rows={5} placeholder="What should we build?" className={fieldClass} />
       </label>
-      <label className="sr-only" aria-hidden="true">
+      <label style={{ position: "absolute", opacity: 0, pointerEvents: "none", zIndex: -1 }} aria-hidden="true">
         <span>Company</span>
         <input name="company" tabIndex={-1} autoComplete="off" />
       </label>

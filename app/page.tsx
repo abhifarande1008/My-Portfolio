@@ -3,7 +3,6 @@ import { SkillTabProvider } from "@/lib/skill-tab-context";
 import { ThemeProvider } from "@/lib/theme-context";
 import HeroCanvasWrapper from "@/components/three/HeroCanvasWrapper";
 import { Atmosphere } from "@/components/shared/Atmosphere";
-import { CustomCursor } from "@/components/ui/CustomCursor";
 import { PerformanceNotice } from "@/components/ui/PerformanceNotice";
 import { Navbar } from "@/components/ui/Navbar";
 import { Hero } from "@/components/sections/Hero";
@@ -23,7 +22,6 @@ export default function HomePage() {
         <SkillTabProvider>
           <Preloader />
           <ClientOnly>
-            <CustomCursor />
             <PerformanceNotice />
           </ClientOnly>
           <a

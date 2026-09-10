@@ -78,19 +78,6 @@ body {
   transition: background-color 0.4s var(--ease-out), color 0.4s var(--ease-out);
 }
 
-@media (pointer: fine) {
-  html.has-custom-cursor,
-  html.has-custom-cursor body,
-  html.has-custom-cursor a,
-  html.has-custom-cursor button {
-    cursor: none;
-  }
-
-  html.has-custom-cursor input,
-  html.has-custom-cursor textarea {
-    cursor: text;
-  }
-}
 
 html {
   overflow-x: clip;

@@ -8,19 +8,10 @@ import { ACCENT_HEX, WARM_HEX } from "@/lib/journey";
 import {
   architectureEdges,
   architectureNodes,
-  CLUSTER_DEPTH,
-  type ArchCluster,
 } from "@/lib/architecture-graph";
 
 const ACCENT = new THREE.Color(ACCENT_HEX);
 const WARM = new THREE.Color(WARM_HEX);
-
-function clusterForProgress(t: number): ArchCluster {
-  if (t < 0.34) return "identity";
-  if (t < 0.54) return "craft";
-  if (t < 0.74) return "work";
-  return "close";
-}
 
 export function ArchitectureScene() {
   const scroll = useScrollProgress();
@@ -30,7 +21,6 @@ export function ArchitectureScene() {
   const color = useMemo(() => new THREE.Color(), []);
   const edges = useMemo(() => architectureEdges(), []);
   const placed = useRef(false);
-  const lastKey = useRef("");
 
   const lineGeometry = useMemo(() => {
     const positions = new Float32Array(edges.length * 6);
@@ -54,7 +44,7 @@ export function ArchitectureScene() {
 
   useEffect(() => () => lineGeometry.dispose(), [lineGeometry]);
 
-  useFrame(() => {
+  useFrame((state) => {
     const mesh = meshRef.current;
     if (!mesh) return;
     const t = Number.isFinite(scroll.get()) ? scroll.get() : 0;
@@ -70,12 +60,8 @@ export function ArchitectureScene() {
       placed.current = true;
     }
 
-    const active = clusterForProgress(t);
-    const key = `${active}:${(t * 20) | 0}`;
-    if (key === lastKey.current) return;
-    lastKey.current = key;
-
-    const activeZ = CLUSTER_DEPTH[active];
+    // Evaluate continuously instead of locking to 5% increments
+    const activeZ = state.camera.position.z - 4; // Center the glow a bit in front of the camera
     const reveal = THREE.MathUtils.smoothstep(t, 0.1, 0.2);
     const mix = THREE.MathUtils.smoothstep(t, 0.72, 1);
 

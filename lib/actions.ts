@@ -4,6 +4,8 @@ import { Resend } from "resend";
 import { SITE } from "./site";
 import type { ContactFormState } from "./types";
 
+import { headers } from "next/headers";
+
 const resendApiKey = process.env.RESEND_API_KEY;
 const contactToEmail = process.env.CONTACT_TO_EMAIL ?? SITE.emailWork;
 const resendFromEmail = process.env.RESEND_FROM_EMAIL ?? "onboarding@resend.dev";
@@ -13,13 +15,42 @@ const MESSAGE_MIN_LENGTH = 10;
 const MESSAGE_MAX_LENGTH = 5000;
 const EMAIL_MAX_LENGTH = 254;
 
+const rateLimitMap = new Map<string, { count: number; lastReset: number }>();
+const RATE_LIMIT_WINDOW_MS = 60 * 1000;
+const MAX_REQUESTS_PER_WINDOW = 3;
+
+function isRateLimited(ip: string): boolean {
+  const now = Date.now();
+  const record = rateLimitMap.get(ip);
+  if (!record) {
+    rateLimitMap.set(ip, { count: 1, lastReset: now });
+    return false;
+  }
+  if (now - record.lastReset > RATE_LIMIT_WINDOW_MS) {
+    record.count = 1;
+    record.lastReset = now;
+    return false;
+  }
+  record.count++;
+  return record.count > MAX_REQUESTS_PER_WINDOW;
+}
+
 export async function submitContact(
   _prev: ContactFormState,
   formData: FormData,
 ): Promise<ContactFormState> {
-  const name = String(formData.get("name") ?? "").trim();
+  const headersList = await headers();
+  const ip = headersList.get("x-forwarded-for") || "unknown";
+
+  if (isRateLimited(ip)) {
+    return { ok: false, error: "Too many requests. Please try again later." };
+  }
+
+  const rawName = String(formData.get("name") ?? "").trim();
+  const name = rawName.replace(/[\r\n]/g, " "); // Prevent header injection
   const email = String(formData.get("email") ?? "").trim();
-  const message = String(formData.get("message") ?? "").trim();
+  const rawMessage = String(formData.get("message") ?? "").trim();
+  const message = rawMessage.replace(/[\0\u200B-\u200D\uFEFF]/g, ""); // Strip null bytes and zero-width chars
   const company = String(formData.get("company") ?? "").trim();
 
   if (company) {
@@ -48,14 +79,14 @@ export async function submitContact(
     };
   }
 
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+  if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email)) {
     return { ok: false, error: "Please enter a valid email address." };
   }
 
   if (!resendApiKey) {
     return {
       ok: false,
-      error: "Email service is not configured yet. Set RESEND_API_KEY to enable contact submissions.",
+      error: "Service unavailable.",
     };
   }
 
@@ -83,14 +114,16 @@ export async function submitContact(
     });
 
     if (error) {
+      console.error("Resend error:", error);
       return {
         ok: false,
-        error: error.message || "Something went wrong while sending your message.",
+        error: "Failed to send message. Please try again later.",
       };
     }
 
     return { ok: true, error: "" };
-  } catch {
+  } catch (err) {
+    console.error("Resend catch error:", err);
     return {
       ok: false,
       error: "Something went wrong while sending your message.",
