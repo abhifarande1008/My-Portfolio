@@ -7,6 +7,8 @@ type MagneticButtonProps = {
   children: ReactNode;
   className?: string;
   href?: string;
+  target?: string;
+  rel?: string;
   onClick?: () => void;
   type?: "button" | "submit";
   disabled?: boolean;
@@ -16,6 +18,8 @@ export function MagneticButton({
   children,
   className = "",
   href,
+  target,
+  rel,
   onClick,
   type = "button",
   disabled,
@@ -57,7 +61,7 @@ export function MagneticButton({
 
   if (href) {
     return (
-      <motion.a href={href} {...shared}>
+      <motion.a href={href} target={target} rel={rel} {...shared}>
         {children}
       </motion.a>
     );

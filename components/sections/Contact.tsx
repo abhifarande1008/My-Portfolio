@@ -104,12 +104,16 @@ export function Contact() {
             <div className="flex flex-wrap gap-3">
               <MagneticButton
                 href={SITE.resume}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="rounded-full bg-warm px-5 py-3 font-mono text-[length:var(--text-mono)] text-void"
               >
                 Download PDF
               </MagneticButton>
               <MagneticButton
                 href={SITE.resume}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="rounded-full border border-warm/50 px-5 py-3 font-mono text-[length:var(--text-mono)] text-warm hover:bg-warm/10"
               >
                 View Resume

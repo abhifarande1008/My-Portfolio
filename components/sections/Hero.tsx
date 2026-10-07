@@ -41,7 +41,7 @@ export function Hero() {
           transition={{ duration: 0.9, delay: 0.16, ease }}
           className="mt-5 max-w-full font-mono text-[length:var(--text-mono)] tracking-[0.12em] text-accent uppercase sm:tracking-[0.18em]"
         >
-          Software Developer · Kolhapur
+          Full-Stack Developer · Kolhapur
         </motion.p>
         <motion.p
           initial={{ opacity: 0, y: 18, filter: "blur(4px)" }}
@@ -49,8 +49,8 @@ export function Hero() {
           transition={{ duration: 0.9, delay: 0.24, ease }}
           className="mt-6 max-w-md text-pretty text-text-secondary"
         >
-          Software Developer building multi-tenant College ERP modules for academics,
-          scholarships, admissions, and admin masters — using Next.js, NestJS, and MongoDB.
+          Full-Stack Developer building admissions, examination, fee-payment and student-record
+          modules of a multi-tenant College ERP — using Next.js, React, TypeScript, NestJS, and MongoDB.
         </motion.p>
         <div className="mt-8 flex flex-wrap gap-6 sm:mt-10 sm:gap-8">
           {stats.map((stat, index) => (
@@ -87,6 +87,8 @@ export function Hero() {
           </MagneticButton>
           <MagneticButton
             href={SITE.resume}
+            target="_blank"
+            rel="noopener noreferrer"
             className="rounded-full border border-accent/40 px-4 py-2.5 font-mono text-[length:var(--text-mono)] text-accent hover:bg-accent/10 sm:px-5 sm:py-3"
           >
             Download Resume

@@ -15,18 +15,23 @@ export function Footer() {
           <p className="font-mono text-[length:var(--text-mono)] tracking-[0.28em] text-accent uppercase">AF</p>
           <p className="mt-2 text-sm text-text-secondary">Abhishek Farande · Kolhapur</p>
         </div>
-        <div className="flex flex-wrap items-center gap-5 font-mono text-[length:var(--text-mono)] text-text-secondary">
-          {links.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              data-cursor="interactive"
-              className="transition-colors hover:text-warm"
-            >
-              {link.label}
-            </a>
-          ))}
-          <a href="#hero" data-cursor="interactive" className="text-warm transition-colors hover:text-text-primary">
+        <div className="flex flex-wrap items-center gap-5 font-mono text-[length:var(--text-mono)] text-white mix-blend-difference">
+          {links.map((link) => {
+            const isExternal = !link.href.startsWith("mailto:") && !link.href.startsWith("#");
+            return (
+              <a
+                key={link.href}
+                href={link.href}
+                target={isExternal ? "_blank" : undefined}
+                rel={isExternal ? "noopener noreferrer" : undefined}
+                data-cursor="interactive"
+                className="transition-opacity hover:opacity-70"
+              >
+                {link.label}
+              </a>
+            );
+          })}
+          <a href="#hero" data-cursor="interactive" className="transition-opacity hover:opacity-70">
             Back to top
           </a>
         </div>

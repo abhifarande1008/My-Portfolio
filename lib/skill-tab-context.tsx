@@ -11,7 +11,7 @@ const SkillTabContext = createContext<{
 } | null>(null);
 
 export function SkillTabProvider({ children }: { children: ReactNode }) {
-  const [tab, setTab] = useState<SkillTabId>("language");
+  const [tab, setTab] = useState<SkillTabId>("frontend");
   return <SkillTabContext.Provider value={{ tab, setTab }}>{children}</SkillTabContext.Provider>;
 }
 

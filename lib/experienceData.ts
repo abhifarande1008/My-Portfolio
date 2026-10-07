@@ -3,20 +3,21 @@ import type { ExperienceEntry } from "./types";
 export const experience: ExperienceEntry[] = [
   {
     type: "experience",
-    title: "Software Developer",
-    org: "Seratek Systems (formerly Akron Systems)",
+    title: "Full-Stack Developer",
+    org: "Seratek Systems (formerly Akron System)",
     period: "Jan 2026 – Present",
     description:
-      "Building and maintaining Academics and Scholarship modules of a multi-tenant College ERP — student records, course management, scholarship allocation, admin masters, and the online Admission Form. Optimized NestJS REST APIs on MongoDB (25% lower latency) and ran Agile sprints with Azure Boards.",
-    tags: ["Next.js", "NestJS", "MongoDB", "ShadCN", "Tailwind CSS", "Azure Boards"],
+      "Developed 72+ pages on Next.js App Router with 600+ components. Implemented multi-step admission forms with React Hook Form + Zod. Engineered role-based Internal Marks submission (1,200+ lines) with RBAC routing. Resolved Examination-module race conditions with a 5-minute TTL cache. Developed Preview-Personalization backend (GraphQL + REST APIs). Secured routes with AuthGuard, state management via Redux Toolkit, React Query, Apollo.",
+    tags: ["Next.js", "NestJS", "TypeScript", "GraphQL", "MongoDB", "Tailwind CSS"],
   },
   {
     type: "experience",
     title: "Software Developer Intern",
-    org: "Seratek Systems (formerly Akron Systems)",
+    org: "Seratek Systems",
     period: "June 2025 – Dec 2025",
     description:
-      "Built responsive multi-role UI pages with ShadCN and Tailwind CSS, shipping dynamic forms and full CRUD workflows. Built and tested NestJS REST APIs with MongoDB for student, course, and scholarship modules, including backend validation.",
-    tags: ["Next.js", "NestJS", "TypeScript", "MongoDB", "ShadCN"],
+      "Delivered NestJS + MongoDB REST APIs and shadcn/ui CRUD pages for student, course and scholarship modules.",
+    tags: ["NestJS", "MongoDB", "shadcn/ui", "REST APIs"],
   },
 ];
+

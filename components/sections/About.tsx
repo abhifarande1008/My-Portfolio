@@ -5,10 +5,10 @@ import { motion } from "framer-motion";
 const ease = [0.22, 1, 0.36, 1] as const;
 
 const facts = [
-  { label: "Education", value: "B.Tech IT — Walchand Institute of Technology · CGPA 8.76" },
-  { label: "Diploma", value: "DKTE YCP, Ichalkaranji · 82.46%" },
-  { label: "Now", value: "Software Developer — Seratek Systems" },
-  { label: "Open to", value: "Full-time & freelance opportunities" },
+  { label: "Education", value: "B.Tech IT — Walchand Institute of Technology · CGPA 8.76 (Graduated 2026)" },
+  { label: "Diploma", value: "DKTE YCP, Ichalkaranji · 82.46% (Passed 2023)" },
+  { label: "Now", value: "Full-Stack Developer — Seratek Systems" },
+  { label: "Open to", value: "Full-time opportunities" },
 ];
 
 export function About() {
@@ -41,9 +41,9 @@ export function About() {
             transition={{ duration: 0.8, delay: 0.16, ease }}
             className="mt-6 text-pretty text-text-secondary"
           >
-            B.Tech IT graduate from Walchand Institute of Technology. Software Developer
-            at Seratek Systems (formerly Akron Systems), building a multi-tenant College ERP
-            for academics, scholarships, admissions, and admin masters.
+            B.Tech IT graduate from Walchand Institute of Technology. Full-Stack Developer
+            at Seratek Systems (formerly Akron System), building admissions, examination, fee-payment and student-record modules
+            of a multi-tenant College ERP.
           </motion.p>
           <motion.blockquote
             initial={{ opacity: 0, y: 16, filter: "blur(4px)" }}
