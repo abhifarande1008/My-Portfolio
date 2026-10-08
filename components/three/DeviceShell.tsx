@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useRef } from "react";
 import { useFrame } from "@react-three/fiber";
+import { ContactShadows } from "@react-three/drei";
 import * as THREE from "three";
 import { useScrollProgress } from "@/lib/scroll-context";
 import { chassisProps, makeGrainMap } from "@/lib/pbr";
@@ -207,6 +208,7 @@ export function DeviceShell() {
         <boxGeometry args={[0.95, 0.04, 0.42]} />
         <meshPhysicalMaterial {...chassis} roughnessMap={grain} />
       </mesh>
+      <ContactShadows position={[0, -1.16, 0]} opacity={0.55} scale={3.5} blur={2.2} far={2.5} />
     </group>
   );
 }

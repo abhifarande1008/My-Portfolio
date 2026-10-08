@@ -52,13 +52,14 @@ export function Hero() {
           Full-Stack Developer building admissions, examination, fee-payment and student-record
           modules of a multi-tenant College ERP — using Next.js, React, TypeScript, NestJS, and MongoDB.
         </motion.p>
-        <div className="mt-8 flex flex-wrap gap-6 sm:mt-10 sm:gap-8">
+        <div className="mt-8 flex flex-wrap gap-4 sm:mt-10 sm:gap-6">
           {stats.map((stat, index) => (
             <motion.div
               key={stat.label}
               initial={{ opacity: 0, y: 12, filter: "blur(4px)" }}
               animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
               transition={{ duration: 0.7, delay: 0.32 + index * 0.08, ease }}
+              className="min-w-[120px] rounded-2xl border border-text-primary/10 bg-surface/40 p-4 shadow-sm backdrop-blur-md transition-colors hover:bg-surface/60 sm:p-5"
             >
               <p className="font-serif text-3xl text-text-primary">{stat.value}</p>
               <p className="mt-1 font-mono text-[length:var(--text-mono)] text-text-secondary">
@@ -71,27 +72,28 @@ export function Hero() {
           initial={{ opacity: 0, y: 12, filter: "blur(4px)" }}
           animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
           transition={{ duration: 0.8, delay: 0.56, ease }}
-          className="mt-10 flex flex-wrap gap-3"
+          className="mt-10 flex flex-wrap items-center gap-4"
         >
           <MagneticButton
             href="#work"
-            className="rounded-full bg-accent px-4 py-2.5 font-mono text-[length:var(--text-mono)] text-void transition-opacity hover:opacity-90 sm:px-5 sm:py-3"
+            className="rounded-full bg-accent px-5 py-3 font-mono text-[length:var(--text-mono)] text-void transition-all hover:bg-accent/90 hover:shadow-[0_0_20px_color-mix(in_oklch,var(--accent)_40%,transparent)] sm:px-6 sm:py-3.5"
           >
             View Work
-          </MagneticButton>
-          <MagneticButton
-            href="#contact"
-            className="rounded-full border border-white/15 px-4 py-2.5 font-mono text-[length:var(--text-mono)] text-text-primary hover:border-white/35 sm:px-5 sm:py-3"
-          >
-            Contact Me
           </MagneticButton>
           <MagneticButton
             href={SITE.resume}
             target="_blank"
             rel="noopener noreferrer"
-            className="rounded-full border border-accent/40 px-4 py-2.5 font-mono text-[length:var(--text-mono)] text-accent hover:bg-accent/10 sm:px-5 sm:py-3"
+            className="rounded-full border border-text-primary/20 bg-transparent px-5 py-3 font-mono text-[length:var(--text-mono)] text-text-primary transition-colors hover:border-accent/50 hover:bg-accent/5 sm:px-6 sm:py-3.5"
           >
             Download Resume
+          </MagneticButton>
+          <MagneticButton
+            href="#contact"
+            className="group relative flex items-center justify-center px-2 py-3 font-mono text-[length:var(--text-mono)] text-text-secondary transition-colors hover:text-text-primary sm:px-3 sm:py-3.5"
+          >
+            Contact Me
+            <span className="absolute bottom-2 left-2 right-2 block h-[1px] origin-left scale-x-0 bg-accent transition-transform duration-300 ease-out group-hover:scale-x-100 sm:bottom-2.5 sm:left-3 sm:right-3"></span>
           </MagneticButton>
         </motion.div>
         <motion.div

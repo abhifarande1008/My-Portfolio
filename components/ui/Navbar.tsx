@@ -116,15 +116,7 @@ function NavLink({ href, label, isActive, isHovered, onHoverStart, reduceMotion 
             }
           />
         )}
-        {isHovered && !isActive && (
-          <motion.span
-            initial={{ scale: 0, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            exit={{ scale: 0, opacity: 0 }}
-            className="h-1 w-1 rounded-full bg-accent/80 shadow-[0_0_6px_var(--accent)]"
-            transition={{ duration: 0.15 }}
-          />
-        )}
+
         <span>{label}</span>
       </motion.span>
     </a>
@@ -161,7 +153,7 @@ export function Navbar() {
             href="#hero"
             data-cursor="interactive"
             aria-label="AF — back to top"
-            className="relative pointer-events-auto shrink-0 flex items-center rounded-full border border-text-primary/10 bg-surface/90 px-2 py-0.5 sm:px-3 sm:py-1.5 shadow-[0_8px_32px_rgba(0,0,0,0.18)] backdrop-blur-2xl outline-none will-change-transform lg:px-3 lg:py-1.5"
+            className="relative pointer-events-auto shrink-0 flex items-center rounded-full border border-text-primary/15 bg-surface/90 px-2 py-0.5 sm:px-3 sm:py-1.5 shadow-[0_8px_32px_rgba(0,0,0,0.25)] backdrop-blur-3xl outline-none will-change-transform lg:px-3 lg:py-1.5 transition-colors hover:border-text-primary/25"
             whileHover={reduceMotion ? {} : { scale: 1.04 }}
             whileTap={reduceMotion ? {} : { scale: 0.96 }}
           >
@@ -182,7 +174,7 @@ export function Navbar() {
           <nav
             aria-label="Site navigation"
             onMouseLeave={() => setHoveredHref(null)}
-            className="relative flex min-w-0 max-w-full shrink items-center gap-0.5 overflow-x-auto rounded-full border border-text-primary/10 bg-surface/90 p-0.5 shadow-[0_8px_32px_rgba(0,0,0,0.18)] backdrop-blur-2xl transition-colors duration-300 hover:border-text-primary/20 [-ms-overflow-style:none] [scrollbar-width:none] sm:gap-1 sm:p-1.5 [&::-webkit-scrollbar]:hidden"
+            className="relative flex min-w-0 max-w-full shrink items-center gap-0.5 overflow-x-auto rounded-full border border-text-primary/15 bg-surface/90 p-0.5 shadow-[0_8px_32px_rgba(0,0,0,0.25)] backdrop-blur-3xl transition-colors duration-300 hover:border-text-primary/25 [-ms-overflow-style:none] [scrollbar-width:none] sm:gap-1 sm:p-1.5 [&::-webkit-scrollbar]:hidden"
           >
             {links.map((link) => (
               <NavLink
