@@ -81,35 +81,12 @@ body {
 
 html {
   overflow-x: clip;
-  scrollbar-width: thin;
-  scrollbar-color: color-mix(in oklch, var(--accent) 70%, transparent) var(--void);
+  scrollbar-width: none; /* Firefox */
 }
 
 html::-webkit-scrollbar,
 body::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-
-html::-webkit-scrollbar-track,
-body::-webkit-scrollbar-track {
-  background: var(--void);
-}
-
-html::-webkit-scrollbar-thumb,
-body::-webkit-scrollbar-thumb {
-  background: linear-gradient(
-    180deg,
-    color-mix(in oklch, var(--accent) 85%, white),
-    color-mix(in oklch, var(--accent) 55%, var(--void))
-  );
-  border: 2px solid var(--void);
-  border-radius: 999px;
-}
-
-html::-webkit-scrollbar-thumb:hover,
-body::-webkit-scrollbar-thumb:hover {
-  background: var(--accent);
+  display: none; /* Chrome, Safari, Opera */
 }
 
 ::selection {
